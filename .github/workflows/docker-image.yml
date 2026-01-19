@@ -11,6 +11,15 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+         - name: java-app
+           path: ./java-app
+         - name: node-app
+           path: ./node-app
+         - name: python-app
+           path: ./python-app
 
     steps:
     - name: Checkout dog
@@ -44,7 +53,7 @@ jobs:
     - name: Build and Push Image
       uses: docker/build-push-action@v6
       with:
-          context: ./python-app
+          context: ${{ matrix.service.path}}
           file: ./python-app/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
