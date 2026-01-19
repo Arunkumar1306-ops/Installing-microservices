@@ -30,6 +30,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
           push: true
+          context: python-app
           tags: user/app:latest
       
     - name: Build the Docker image
