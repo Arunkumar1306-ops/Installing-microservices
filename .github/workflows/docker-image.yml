@@ -53,7 +53,7 @@ jobs:
     - name: Build and Push Image
       uses: docker/build-push-action@v6
       with:
-          context: ${{ matrix.service.path}}
+          context: ${{ matrix.service.path }}
           file: ./python-app/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
